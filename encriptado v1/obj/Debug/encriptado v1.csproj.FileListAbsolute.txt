@@ -1,0 +1,9 @@
+c:\users\david\Documents\PROJECTS\CODES\Visual Studio 2015\Projects\encriptado v1\encriptado v1\bin\Debug\encriptado v1.exe.config
+c:\users\david\Documents\PROJECTS\CODES\Visual Studio 2015\Projects\encriptado v1\encriptado v1\bin\Debug\encriptado v1.exe
+c:\users\david\Documents\PROJECTS\CODES\Visual Studio 2015\Projects\encriptado v1\encriptado v1\bin\Debug\encriptado v1.pdb
+c:\users\david\Documents\PROJECTS\CODES\Visual Studio 2015\Projects\encriptado v1\encriptado v1\obj\Debug\encriptado v1.csprojResolveAssemblyReference.cache
+c:\users\david\Documents\PROJECTS\CODES\Visual Studio 2015\Projects\encriptado v1\encriptado v1\obj\Debug\encriptado_v1.Form1.resources
+c:\users\david\Documents\PROJECTS\CODES\Visual Studio 2015\Projects\encriptado v1\encriptado v1\obj\Debug\encriptado_v1.Properties.Resources.resources
+c:\users\david\Documents\PROJECTS\CODES\Visual Studio 2015\Projects\encriptado v1\encriptado v1\obj\Debug\encriptado v1.csproj.GenerateResource.Cache
+c:\users\david\Documents\PROJECTS\CODES\Visual Studio 2015\Projects\encriptado v1\encriptado v1\obj\Debug\encriptado v1.exe
+c:\users\david\Documents\PROJECTS\CODES\Visual Studio 2015\Projects\encriptado v1\encriptado v1\obj\Debug\encriptado v1.pdb
