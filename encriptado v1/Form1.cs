@@ -128,13 +128,14 @@ namespace encriptado_v1
         {
             char[] res = subject.ToCharArray();
             int s = res.Length - 1;
-            foreach(int k in key)
+            for(int x=0;x<key.Length;x++)
             {
+                int k=key[x];
                 for(int i=0;i<s;i++)
                 {
                     if (k != 0 && i % k == 0)
                     {
-                        res[i] = (char)(res[i] ^ (k * 3));
+                        res[i] = (char)(res[i] ^ (k * getbyte(key)));
                     }
                     if (i % 2 == 0 && i < s - 1)
                     {
@@ -150,7 +151,7 @@ namespace encriptado_v1
                     }
                     if (k != 0 && i % k == 0)
                     {
-                        res[i] = (char)(res[i] ^ (k * 3));
+                        res[i] = (char)(res[i] ^ (k * getbyte(key)));
                     }
                 }
                 mask(k * ((key.Length + (int)(s/4))*(key.Length + (int) (s/4))), ref res);
@@ -176,14 +177,14 @@ namespace encriptado_v1
                         int j = i - 2;
                         if (k != 0 && j % k == 0)
                         {
-                            res[i - 2] = (char)(res[i - 2] ^ (k * 3));
+                            res[i - 2] = (char)(res[i - 2] ^ (k * getbyte(key)));
                         }
                         char aux = res[i];
                         res[i] = res[i - 2];
                         res[i - 2] = aux;
                         if (k != 0 && j % k == 0)
                         {
-                            res[i - 2] = (char)(res[i - 2] ^ (k * 3));
+                            res[i - 2] = (char)(res[i - 2] ^ (k * getbyte(key)));
                         }
                     }
                     else
@@ -191,14 +192,14 @@ namespace encriptado_v1
                         int j = i - 1;
                         if (k != 0 && j % k == 0)
                         {
-                            res[i - 1] = (char)(res[i - 1] ^ (k * 3));
+                            res[i - 1] = (char)(res[i - 1] ^ (k * getbyte(key)));
                         }
                         char aux = res[i];
                         res[i] = res[i - 1];
                         res[i - 1] = aux;
                         if (k != 0 && j % k == 0)
                         {
-                            res[i - 1] = (char)(res[i - 1] ^ (k * 3));
+                            res[i - 1] = (char)(res[i - 1] ^ (k * getbyte(key)));
                         }
                     }
                 }
