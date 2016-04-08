@@ -133,25 +133,28 @@ namespace encriptado_v1
                 int k=key[x];
                 for (int c = 0; c < k; c++)
                 {
-                    for (int i = 0; i < s; i++)
+                    if (c > 0 && k % c != 0)
                     {
-                        if (i % 2 == 0 && i < s - 1)
+                        for (int i = 0; i < s; i++)
                         {
-                            char aux = res[i];
-                            res[i] = res[i + 2];
-                            res[i + 2] = aux;
-                        }
-                        else
-                        {
-                            char aux = res[i];
-                            res[i] = res[i + 1];
-                            res[i + 1] = aux;
+                            if (i % 2 == 0 && i < s - 1)
+                            {
+                                char aux = res[i];
+                                res[i] = res[i + 2];
+                                res[i + 2] = aux;
+                            }
+                            else
+                            {
+                                char aux = res[i];
+                                res[i] = res[i + 1];
+                                res[i + 1] = aux;
+                            }
                         }
                     }
                 }
                 mask(k + getbyte(key) * ((key.Length + (int)(s/4))*(key.Length + (int) (s/4))), ref res);
             }
-            mask(getbyte(key),ref res);
+            mask(getbyte(key) + ( s / key.Length), ref res);
             String result = new string(res);
             return result;
         }
@@ -160,26 +163,29 @@ namespace encriptado_v1
         {
             char[] res = subject.ToCharArray();
             int s = res.Length - 1;
-            mask(getbyte(key), ref res);
+            mask(getbyte(key) + (s / key.Length), ref res);
             for (int x = key.Length - 1; x >= 0; x--)
             {
                 int k = key[x];
                 mask(k + getbyte(key) * ((key.Length + (int)(s / 4)) * (key.Length + (int)(s / 4))), ref res);
                 for (int c = k - 1; c >= 0; c--)
-                { 
-                    for (int i = s; i >= 1; i--)
+                {
+                    if (c > 0 && (k) % c != 0)
                     {
-                        if (i % 2 == 0)
+                        for (int i = s; i >= 1; i--)
                         {
-                            char aux = res[i];
-                            res[i] = res[i - 2];
-                            res[i - 2] = aux;
-                        }
-                        else
-                        {
-                            char aux = res[i];
-                            res[i] = res[i - 1];
-                            res[i - 1] = aux;
+                            if (i % 2 == 0)
+                            {
+                                char aux = res[i];
+                                res[i] = res[i - 2];
+                                res[i - 2] = aux;
+                            }
+                            else
+                            {
+                                char aux = res[i];
+                                res[i] = res[i - 1];
+                                res[i - 1] = aux;
+                            }
                         }
                     }
                 }
@@ -213,6 +219,7 @@ namespace encriptado_v1
             for(int c=0;c<i.Length;c++)
             {
                 i[c] = res[c];
+                i[c]++;
             }
             return i;
         }
@@ -222,7 +229,7 @@ namespace encriptado_v1
             int c = 0;
             foreach(int k in key)
             {
-                c += ( (11 * k ) /5 ) + ( (7*k) / 3 );
+                c += k + ( (13 * k ) / 11 ) + ( (7 * k) / 3 ) + c / 2;
             }
             return c;
         }        

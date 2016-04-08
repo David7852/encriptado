@@ -62,7 +62,7 @@
             this.textBox1.MinimumSize = new System.Drawing.Size(220, 30);
             this.textBox1.Name = "textBox1";
             this.textBox1.PasswordChar = '•';
-            this.textBox1.Size = new System.Drawing.Size(220, 30);
+            this.textBox1.Size = new System.Drawing.Size(220, 25);
             this.textBox1.TabIndex = 1;
             this.textBox1.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
             // 
@@ -129,13 +129,14 @@
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this._filechoosebutton);
             this.Font = new System.Drawing.Font("Segoe UI Semilight", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "Form1";
             this.Text = "Encriptado";
             this.ResumeLayout(false);
             this.PerformLayout();
-
+            this.MaximizeBox = false;
         }
 
         #endregion
