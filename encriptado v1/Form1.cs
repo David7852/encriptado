@@ -131,30 +131,25 @@ namespace encriptado_v1
             for(int x=0;x<key.Length;x++)
             {
                 int k=key[x];
-                for(int i=0;i<s;i++)
+                for (int c = 0; c < k; c++)
                 {
-                    if (k != 0 && i % k == 0)
+                    for (int i = 0; i < s; i++)
                     {
-                        res[i] = (char)(res[i] ^ (k * getbyte(key)));
-                    }
-                    if (i % 2 == 0 && i < s - 1)
-                    {
-                        char aux = res[i];
-                        res[i] = res[i + 2];
-                        res[i + 2] = aux;
-                    }
-                    else
-                    {
-                        char aux = res[i];
-                        res[i] = res[i + 1];
-                        res[i + 1] = aux;
-                    }
-                    if (k != 0 && i % k == 0)
-                    {
-                        res[i] = (char)(res[i] ^ (k * getbyte(key)));
+                        if (i % 2 == 0 && i < s - 1)
+                        {
+                            char aux = res[i];
+                            res[i] = res[i + 2];
+                            res[i + 2] = aux;
+                        }
+                        else
+                        {
+                            char aux = res[i];
+                            res[i] = res[i + 1];
+                            res[i + 1] = aux;
+                        }
                     }
                 }
-                mask(k * ((key.Length + (int)(s/4))*(key.Length + (int) (s/4))), ref res);
+                mask(k + getbyte(key) * ((key.Length + (int)(s/4))*(key.Length + (int) (s/4))), ref res);
             }
             mask(getbyte(key),ref res);
             String result = new string(res);
@@ -166,40 +161,25 @@ namespace encriptado_v1
             char[] res = subject.ToCharArray();
             int s = res.Length - 1;
             mask(getbyte(key), ref res);
-            for (int x=key.Length-1;x>=0;x--)
+            for (int x = key.Length - 1; x >= 0; x--)
             {
                 int k = key[x];
-                mask(k * ((key.Length + (int)(s / 4)) * (key.Length + (int)(s / 4))), ref res);
-                for (int i=s;i>=1;i--)
-                {
-                    if (i % 2 == 0)
+                mask(k + getbyte(key) * ((key.Length + (int)(s / 4)) * (key.Length + (int)(s / 4))), ref res);
+                for (int c = k - 1; c >= 0; c--)
+                { 
+                    for (int i = s; i >= 1; i--)
                     {
-                        int j = i - 2;
-                        if (k != 0 && j % k == 0)
+                        if (i % 2 == 0)
                         {
-                            res[i - 2] = (char)(res[i - 2] ^ (k * getbyte(key)));
+                            char aux = res[i];
+                            res[i] = res[i - 2];
+                            res[i - 2] = aux;
                         }
-                        char aux = res[i];
-                        res[i] = res[i - 2];
-                        res[i - 2] = aux;
-                        if (k != 0 && j % k == 0)
+                        else
                         {
-                            res[i - 2] = (char)(res[i - 2] ^ (k * getbyte(key)));
-                        }
-                    }
-                    else
-                    {
-                        int j = i - 1;
-                        if (k != 0 && j % k == 0)
-                        {
-                            res[i - 1] = (char)(res[i - 1] ^ (k * getbyte(key)));
-                        }
-                        char aux = res[i];
-                        res[i] = res[i - 1];
-                        res[i - 1] = aux;
-                        if (k != 0 && j % k == 0)
-                        {
-                            res[i - 1] = (char)(res[i - 1] ^ (k * getbyte(key)));
+                            char aux = res[i];
+                            res[i] = res[i - 1];
+                            res[i - 1] = aux;
                         }
                     }
                 }
@@ -242,7 +222,7 @@ namespace encriptado_v1
             int c = 0;
             foreach(int k in key)
             {
-                c += k;
+                c += ( (11 * k ) /5 ) + ( (7*k) / 3 );
             }
             return c;
         }        
